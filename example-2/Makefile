@@ -10,16 +10,16 @@ DEBUG_EXEC    = hello-dbg
 
 all: debug release
 
-debug: $(DEBUG_EXEC)
+debug: hello-dbg
 
-$(DEBUG_EXEC): hello.cpp
-	g++ $(DEBUG_FLAGS) hello.cpp -o $(DEBUG_EXEC) 
+hello-dbg: hello.cpp
+	g++ -g -O0 hello.cpp -o -Wall
 
-release: $(RELEASE_EXEC)
+release: hello
 
-$(RELEASE_EXEC): hello.cpp
-	g++ $(RELEASE_FLAGS) hello.cpp -o $(RELEASE_EXEC)
+hello: hello.cpp
+	g++ -O2 hello.cpp -o -Wall -DNDEBUG
 
 clean:
-	rm -f $(RELEASE_EXEC) $(DEBUG_EXEC)
+	rm -f hello hello-dbg
 
